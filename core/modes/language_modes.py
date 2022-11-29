@@ -12,7 +12,7 @@ language_extensions = {
     "batch": "bat",
     "c": "c h",
     # 'cmake': 'cmake',
-    # 'cplusplus': 'cpp hpp',
+    'cplusplus': 'cpp hpp',
     "csharp": "cs",
     "css": "css",
     # 'elisp': 'el',
