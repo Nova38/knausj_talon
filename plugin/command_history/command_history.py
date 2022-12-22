@@ -83,6 +83,23 @@ class Actions:
         num = (0 - number) - 1
         return history[num]
 
+    def history_size()-> int:
+        """Gets the size of the history
+
+        Returns:
+            int: size of history array
+        """
+        return len(history)
+
+    def history_get_sim(number: int) -> str:
+        """Get
+
+        Returns:
+            str: _description_
+        """
+        num = (0 - number) - 1
+        return speech_system._sim(str(history[num]))
+
     def history_transform_phrase_text(words: list[str]) -> Optional[str]:
         """Transforms phrase text for presentation in history. Return `None` to omit from history"""
 
