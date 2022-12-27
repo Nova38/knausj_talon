@@ -10,6 +10,7 @@ mod.apps.one_password = "app.name: 1Password.exe"
 
 @mod.action_class
 class Actions:
+
     def password_fill():
         """fill the password"""
 
