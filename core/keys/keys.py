@@ -1,19 +1,26 @@
 from talon import Context, Module, actions, app
 
-# default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
-#     " "
-# )
-# default_alphabet = "alfa bravo charlie delta echo foxtrot golf hotel india juliett kilo lima mike november oscar papa quebec romeo sierra tango uniform victor whiskey x-ray yankee zulu".split(
-#     " "
-# )
-# default_alphabet = "alfa bat cap drum each fine gust hotel sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zulu".split(
-#     " "
-# )
-default_alphabet = "alfa bat cap delta echo fine golf hotel imp jury kilo look made near odd papa quebec red sun trap urge vest whiskey plex yank zulu".split(
-    " "
-)
+from ..user_settings import get_list_from_csv
 
-letters_string = "abcdefghijklmnopqrstuvwxyz"
+
+def setup_default_alphabet():
+    """set up common default alphabet.
+
+    no need to modify this here, change your alphabet using alphabet.csv"""
+    initial_default_alphabet = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split(
+        " "
+    )
+    initial_letters_string = "abcdefghijklmnopqrstuvwxyz"
+    initial_default_alphabet_dict = dict(
+        zip(initial_default_alphabet, initial_letters_string)
+    )
+
+    return initial_default_alphabet_dict
+
+
+alphabet_list = get_list_from_csv(
+    "alphabet.csv", ("Letter", "Spoken Form"), setup_default_alphabet()
+)
 
 default_digits = "zero one two three four five six seven eight nine".split(" ")
 numbers = [str(i) for i in range(10)]
@@ -129,8 +136,7 @@ if app.platform == "mac":
     modifier_keys["command"] = "cmd"
     modifier_keys["option"] = "alt"
 ctx.lists["self.modifier_key"] = modifier_keys
-alphabet = dict(zip(default_alphabet, letters_string))
-ctx.lists["self.letter"] = alphabet
+ctx.lists["self.letter"] = alphabet_list
 
 # `punctuation_words` is for words you want available BOTH in dictation and as key names in command mode.
 # `symbol_key_words` is for key names that should be available in command mode, but NOT during dictation.
