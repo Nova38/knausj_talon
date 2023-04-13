@@ -57,6 +57,9 @@ settings():
     # per-application basis.
     user.context_sensitive_dictation = 1
 
+    user.cursorless_settings_directory = "./thomas_talon/settings/cursorless"
+
+
 # uncomment tag to enable mouse grid
 tag(): user.mouse_grid_enabled
 #
