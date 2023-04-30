@@ -32,19 +32,14 @@ def update_clicking_mode(setting_value):
 
 settings.register("user.rango_start_with_direct_clicking", update_clicking_mode)
 
-mod.list("rango_hint_styles", desc="list of Rango hint styles")
-mod.list("rango_hint_weights", desc="list of Rango hint weights")
 mod.list("rango_hints_toggle_levels", desc="list of Rango hints toggle levels")
 mod.list(
     "rango_page_location_property",
     desc="list of properties to be found in window.location",
 )
+mod.list("rango_page", desc="A Rango-related page")
 
-hint_styles = ["boxed", "subtle"]
-ctx.lists["user.rango_hint_styles"] = {k: k for k in hint_styles}
-hint_weights = ["bold", "normal", "auto"]
-ctx.lists["user.rango_hint_weights"] = {k: k for k in hint_weights}
-toggle_levels = ["everywhere", "tab", "host", "page", "now"]
+toggle_levels = ["everywhere", "global", "tab", "host", "page", "now"]
 ctx.lists["user.rango_hints_toggle_levels"] = {k: k for k in toggle_levels}
 ctx.lists["user.rango_page_location_property"] = {
     "address": "href",
@@ -54,6 +49,13 @@ ctx.lists["user.rango_page_location_property"] = {
     "path": "pathname",
     "port": "port",
     "protocol": "protocol",
+}
+ctx.lists["user.rango_page"] = {
+    "sponsor": "https://github.com/sponsors/david-tejada",
+    "read me": "https://github.com/david-tejada/rango/blob/main/readme.md",
+    "issues": "https://github.com/david-tejada/rango/issues",
+    "new issue": "https://github.com/david-tejada/rango/issues/new",
+    "changelog": "https://github.com/david-tejada/rango/blob/main/CHANGELOG.md",
 }
 
 
@@ -162,7 +164,7 @@ def send_request_and_wait_for_response(action: dict, timeout_seconds: float = 3.
             if "ms" in response_action:
                 actions.sleep(f"{response_action['ms']}ms")
             else:
-                actions.sleep("150ms")
+                actions.sleep("200ms")
 
 
 @mod.action_class
@@ -213,6 +215,10 @@ class UserActions:
         if arg:
             action["arg"] = arg
         send_request_and_wait_for_response(action)
+
+    # Necessary for talon_hud
+    def rango_toggle_hints():
+        actions.user.rango_command_without_target("toggleHints")
 
     def rango_enable_direct_clicking():
         ctx.tags = ["user.rango_direct_clicking"]
