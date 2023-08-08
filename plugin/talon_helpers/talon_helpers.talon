@@ -7,6 +7,7 @@ talon copy context: user.talon_add_context_clipboard()
 talon copy name:
     name = app.name()
     clip.set_text(name)
+    
 talon copy executable:
     executable = app.executable()
     clip.set_text(executable)
