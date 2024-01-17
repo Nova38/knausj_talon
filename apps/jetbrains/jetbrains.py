@@ -116,6 +116,7 @@ mod = Module()
 mod.apps.jetbrains = "app.name: /jetbrains/"
 mod.apps.jetbrains = "app.name: CLion"
 mod.apps.jetbrains = "app.name: IntelliJ IDEA"
+mod.apps.jetbrains = "app.name: PhpStorm"
 mod.apps.jetbrains = "app.name: PyCharm"
 mod.apps.jetbrains = "app.name: WebStorm"
 mod.apps.jetbrains = "app.name: RubyMine"
@@ -133,6 +134,8 @@ mod.apps.jetbrains = "app.exe: webstorm64.exe"
 mod.apps.jetbrains = """
 os: mac
 and app.bundle: com.jetbrains.pycharm
+os: mac
+and app.bundle: com.jetbrains.rider
 """
 mod.apps.jetbrains = """
 os: windows
@@ -294,7 +297,7 @@ class UserActions:
         # if it's a single line, select the entire thing including the ending new-line5
         if line_start == line_end:
             actions.user.idea(f"goto {line_start} 0")
-            actions.user.idea("action EditorSelectLine"),
+            (actions.user.idea("action EditorSelectLine"),)
         else:
             actions.user.idea(f"range {line_start} {line_end}")
 
