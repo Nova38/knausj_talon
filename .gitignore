@@ -7,3 +7,5 @@ __pycache__
 .vscode/settings.json
 .DS_Store
 local_only.talon
+
+*.code-workspace
