@@ -287,3 +287,19 @@ preview markdown: user.vscode("markdown.showPreview")
 
 # cursorless
 hints toggle: user.vscode("cursorless.toggleDecorations")
+
+
+# Misc
+install extension:       user.vscode("workbench.extensions.action.installVSIX")
+window reload:           user.vscode("workbench.action.reloadWindow")
+trim trailing:           user.vscode("editor.action.trimTrailingWhitespace")
+inspect scope:           user.vscode("editor.action.inspectTMScopes")
+disk raw:                user.save_without_formatting()
+disk all:                user.vscode("workbench.action.files.saveFiles")
+copy command id:         user.copy_command_id()
+
+snip last:               user.vscode("jumpToPrevSnippetPlaceholder")
+[snip] next:             user.vscode("jumpToNextSnippetPlaceholder")
+
+change language [<user.text>]:
+    user.change_language(text or "")
