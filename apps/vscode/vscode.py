@@ -20,6 +20,8 @@ os: mac
 and app.bundle: com.microsoft.VSCodeInsiders
 os: mac
 and app.bundle: com.visualstudio.code.oss
+os: mac
+and app.bundle: com.todesktop.230313mzl4w4u92
 """
 mod.apps.vscode = """
 os: linux
@@ -135,6 +137,9 @@ class EditActions:
         actions.insert(str(n))
         key("enter")
         actions.edit.line_start()
+
+    def zoom_reset():
+        actions.user.vscode("workbench.action.zoomReset")
 
 
 @ctx.action_class("win")
@@ -293,7 +298,7 @@ class UserActions:
 
     # splits.py support end
 
-    # find_and_replace.py support begin
+    # find.py support begin
 
     def find(text: str):
         """Triggers find in current editor"""
@@ -310,6 +315,10 @@ class UserActions:
 
     def find_previous():
         vscode("editor.action.previousMatchFindAction")
+
+    # find.py support end
+
+    # find_and_replace.py support begin
 
     def find_everywhere(text: str):
         """Triggers find across project"""
